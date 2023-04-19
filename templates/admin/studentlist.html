@@ -1,0 +1,76 @@
+{% extends 'admin/dashboard.html'%}
+{% block content %}
+<div class="m-4">
+    
+
+      
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Father Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Contact No</th>
+                <th>Class </th>
+                <th>Remarks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in page_obj %}
+          
+               <td>{{ student.name }}</td>
+               <td>{{ student.address }}</td>
+               <td>{{ student.fathername }}</td>
+               <td>{{ student.dob }}</td>
+               <td>{{ student.gender }}</td>
+               <td>{{ student.contact_no }}</td>
+               <td>{{ student.class_name }}</td>
+               <td>{{ student.remarks }}</td>
+               <td>
+                <a href="{% url 'admin-studentedit' student.id %}" class="btn btn-success no-print">Edit</a>
+                <button class="btn btn-primary no-print" onclick="printStudent('{{ student.name }}', '{{ student.address }}','{{ student.fathername }}','{{ student.dob }}','{{ student.gender }}','{{ student.contact_no }}','{{ student.class_name }}','{{ student.remarks }}')">Print</button>
+              </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+    </table>
+    
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; prev</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next &rsaquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<script>
+    function printStudent(name, address, fathername, dob, gender, contact_no, class_name, remarks) {
+    var html = "<h2 style='text-align:center;'>Student Details</h2><table style='font-size: 24px; text-align: justify;'><tbody><tr><td>Name:</td><td>" + name + "</td></tr><tr><td>Address:</td><td>" + address + "</td></tr><tr><td>Father Name:</td><td>" + fathername + "</td></tr><tr><td>DOB:</td><td>" + dob + "</td></tr><tr><td>Gender:</td><td>" + gender + "</td></tr><tr><td>Contact:</td><td>" + contact_no + "</td></tr><tr><td>Class:</td><td>" + class_name + "</td></tr><tr><td>Remarks:</td><td>" + remarks + "</td></tr></tbody></table>";
+      var printWindow = window.open('', '', 'height=400,width=800');
+      printWindow.document.write('<html><head><title>Print Student Details</title>');
+        printWindow.document.write('<style>table{font-size: 24px; text-align: center; margin: 0 auto;}</style>');
+
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(html);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+    </script>
+    
+
+{% endblock content %}

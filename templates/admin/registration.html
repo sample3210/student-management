@@ -1,0 +1,78 @@
+{% extends 'admin/dashboard.html'%}
+{% block content %}
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <section class="contact-us" id="contact-section">
+    <form id="contact" action="" method="POST" style="width: 700px;">
+     {% csrf_token %}
+      <div class="section-heading">
+        <h4>Add Student</h4>
+      </div>
+
+      <div class="inputField">
+        <input type="text" name="name" id="name" placeholder="Your name" autocomplete="on" required>
+        <span class="valid_info_email"></span>
+      </div><br/>
+
+      <div class="inputField">
+        <input type="text" name="address" id="address" placeholder="Your Address" required="" />
+        <span class="valid_info_email"></span>
+      </div><br/>
+      <div class="inputField">
+        <input type="text" name="fathername" id="fathername" placeholder="Your Father's Name" required="" />
+        <span class="valid_info_email"></span>
+      </div><br/>
+      <div class="inputField">
+        <input type="date" name="dob" id="dob" placeholder="Your DOB" required="" />
+        <span class="valid_info_email"></span>
+      </div><br/>
+      <div class="inputField">
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender">
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="valid_info_email"></span>
+      </div><br/>
+      
+      
+       
+        <div class="inputField">
+          <input type="number" name="contact_no" id="contact_no" placeholder="Your Contact" required="" />
+          <span class="valid_info_email"></span>
+        </div><br/>
+        <div class="inputField">
+          <input type="text" name="class_name" id="class_name" placeholder="Your Class Name" required="" />
+          <span class="valid_info_email"></span>
+        </div><br/>
+
+      <div class="inputField">
+        <textarea name="text" id="message" placeholder="Student Remarks"></textarea>
+        <span class="valid_info_message"></span>
+      </div><br/>
+
+      <center><div class="inputField btn">
+        <button type="submit" id="form-submit" class="main-gradient-button">Add </button>
+      </div></center>
+
+    </form>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+</body>
+
+</html>
+
+{% endblock content %}

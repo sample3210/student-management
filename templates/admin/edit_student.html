@@ -1,0 +1,15 @@
+{% extends 'admin/dashboard.html' %}
+
+{% block content %}
+<div class="m-4">
+  <center><h2>Edit Student</h2></center>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">Save Changes</button>
+    <a href="{% url 'admin-studentlist' %}" class="btn btn-danger">Cancel</a>
+  </form>
+</div>
+{% endblock content %}
